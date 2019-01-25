@@ -103,6 +103,35 @@ public class Note {
 
 
 
-        /* 4..从反面，当双表备份时，只有当id相等，其他字段相同的记录不需要备份，其他度需要备份，将完全相同的记录筛选出来作为集合A，则A的绝对补集就是需要备份的记录*/
+
+            /* 4..从反面，当双表备份时，只有当id相等，其他字段相同的记录不需要备份，其他度需要备份，将完全相同的记录筛选出来作为集合A，则A的绝对补集就是需要备份的记录*/
+
+       /* else{
+            String sql3="delete from t2";
+            count=pst.executeLargeUpdate(sql3);
+            System.out.println("t1表数据为空,则删除备份表所有数据,共删除"+count+"数据,完成备份");
+        }
+        System.out.println("本次备份了"+count+"条记录");*/
+
+
+         /*else{
+            String sql4 = "insert into t2 select * from t1  limit+ " + NUM;
+            count = pst.executeLargeUpdate(sql4);
+            System.out.println("本次备份了"+count+"条记录");
+        }*/
+
+
+          /*if(t2maxId<t1maxId) {
+                        String sql2 = "insert into t2 select * from t1 where id >" + t2maxId + " limit " + NUM;
+                        count = pst.executeLargeUpdate(sql2);
+                    }
+                    else {
+                        System.out.println("备份表t2与t1表数据相同,不需要备份");
+                    }*/
+
+
+       /* //取出此时t1中最后一条记录
+        String sql1="select max(id) from t1";
+        rs=pst.executeQuery(sql1);*/
     }
 }
