@@ -64,7 +64,6 @@ public class CuBackup {
         }
         System.out.println("t2表更新了"+count+"条记录"+"\n");
 
-
         System.out.println("2-----------------------------更新新增的记录");
         //备份新增记录到t2
         rs=pst.executeQuery(sql2);
