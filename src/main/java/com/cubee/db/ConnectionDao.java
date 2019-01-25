@@ -2,8 +2,7 @@ package com.cubee.db;
 
 import com.cubee.db.BeanFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 /**
  * @program: dbtest
@@ -31,5 +30,35 @@ public interface ConnectionDao {
             e.printStackTrace();
         }
         return conn;
+    }
+
+    /**
+     *
+     * @param o 需要调用close方法的对象
+     */
+    static void operate(Object o) {
+        String pstClass = "ClientPreparedStatement";
+        String connClass = "ConnectionImpl";
+        String resultClass = "ResultSetImpl";
+        try{
+            if(o!=null){
+                if(o.getClass().getSimpleName().equals(pstClass)){
+                    PreparedStatement pst= (PreparedStatement) o;
+                    pst.close();
+                }
+                if(o.getClass().getSimpleName().equals(connClass)){
+                    Connection conn= (Connection) o;
+                    conn.commit();
+                    conn.close();
+                }
+                if(o.getClass().getSimpleName().equals(resultClass)){
+                    ResultSet rs= (ResultSet) o;
+                    rs.close();
+                }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
